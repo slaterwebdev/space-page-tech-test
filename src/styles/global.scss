@@ -1,0 +1,81 @@
+//Variables
+$accent-color: #f3bf12;
+$shadow: 0px 4px 5px rgba(0, 0, 0, 0.3);
+
+//Mixins
+@mixin flex($direction: row, $justify: flex-start, $gap: 1rem, $align: stretch, $wrap: nowrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+  gap: $gap;
+}
+
+@mixin smooth-hover($scale: 1.05, $duration: 0.3s) {
+  transition:
+    transform $duration ease-in-out,
+    color $duration ease-in-out;
+  &:hover {
+    transform: scale($scale);
+    color: $accent-color;
+    cursor: pointer;
+  }
+}
+
+@mixin button($bg-color: black, $text-color: white) {
+  all: unset;
+  box-shadow: $shadow;
+  background-color: $bg-color;
+  border-radius: 1rem;
+  width: fit-content;
+  padding: 0.5rem 0.75rem;
+  color: $text-color;
+  font-weight: bolder;
+  @include smooth-hover();
+}
+
+@mixin breakpoint($breakpoint) {
+  @if $breakpoint == mobile {
+    @media (max-width: 560px) { @content; }
+  } @else if $breakpoint == tablet {
+    @media (max-width: 965px) { @content; }
+  }
+}
+
+//Animations
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+} 
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes scroll-ticker {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

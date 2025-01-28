@@ -14,6 +14,16 @@ export default {
     return {
       astronaut,
       star,
+      formattedHighlights: [],
+    };
+  },
+  methods: {
+    updateImage({ index, newImage }) {
+      this.formattedHighlights[index].image = newImage;
+    },
+  },
+  created() {
+    const fetchedData = {
       spaceHighlights: [
         {
           date: "2020-04-20 12:20:00",
@@ -64,20 +74,9 @@ export default {
           name: "Mauna Kea Observatories",
         },
       },
-      formattedHighlights: [],
     };
-  },
-  methods: {
-    updateImage({ index, newImage }) {
-      this.formattedHighlights[index].image = newImage;
-    },
-  },
-  created() {
-    const allHighlights = [
-      ...this.spaceHighlights,
-      ...Object.values(this.spacePartners),
-    ];
-
+    const { spaceHighlights, spacePartners } = fetchedData;
+    const allHighlights = [...spaceHighlights, ...Object.values(spacePartners)];
     this.formattedHighlights = this.formatHighlights(allHighlights);
   },
 };

@@ -7,6 +7,9 @@ If this was solely production then further abstraction of code in to their own r
 
 ### Key Decisions
 
+### Moving predefined pretend API data
+I chose to move the pretend api data out of the `data()` area and in to `created()`, this was to better simulate how api data would be handled in the component whilst adhering to the rules of being allowed to move the provided data but not altering its structure.
+
 #### Handling Data in `SpacePage` and not `MuseumHighlights` Using `formatHighlights mixin`
 To make the MuseumHighlight component scalable and reusable, dynamic properties (specific to a page or partner) are handled through the extraProperties array. This ensures that new properties can be added without modifying the component, improving maintainability and flexibility, allowing the component and the formatting function to be used across all pages.
 
